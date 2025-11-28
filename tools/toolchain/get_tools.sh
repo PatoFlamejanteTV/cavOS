@@ -28,7 +28,7 @@ cd temporarydir
 # Tarballs
 wget -nc https://ftp.gnu.org/gnu/binutils/binutils-2.38.tar.gz
 tar xpvf binutils-*.tar.gz
-wget -nc https://ftp.gnu.org/gnu/gcc/gcc-11.4.0/gcc-11.4.0.tar.gz
+wget -nc https://web.archive.org/web/20250728023406/http://gcc.gnu.org/pub/gcc/infrastructure/gmp-6.1.0.tar.bz2 #original URL down, temp fix https://ftp.gnu.org/gnu/gcc/gcc-11.4.0/gcc-11.4.0.tar.gz
 tar xpvf gcc-*.tar.gz
 
 # Binutils
