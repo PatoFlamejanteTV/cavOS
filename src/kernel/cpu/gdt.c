@@ -19,7 +19,7 @@ void gdt_set_entry(int idx, uint32_t base, uint32_t limit, uint8_t access,
   gdt.descriptors[idx].granularity =
       ((limit >> 16) & 0x0f) | (granularity & 0xf0);
   gdt.descriptors[idx].base_high = (base >> 24) & 0xff;
-  gdt.descriptors[idx].limit = limit;
+  gdt.descriptors[idx].limit = (limit & 0xffff);
 }
 
 void gdt_load_tss(TSSPtr *tss) {
@@ -65,10 +65,10 @@ void initiateGDT() {
   gdt_set_entry(2, 0, 0xffff, 0b10010010, 0);
 
   // Kernel code 32. (24)
-  gdt_set_entry(3, 0, 0xffff, 0b10011010, 0b11001111);
+  gdt_set_entry(3, 0, 0xfffff, 0b10011010, 0b11000000);
 
   // Kernel data 32. (32)
-  gdt_set_entry(4, 0, 0xffff, 0b10010010, 0b11001111);
+  gdt_set_entry(4, 0, 0xfffff, 0b10010010, 0b11000000);
 
   // Kernel code 64. (40)
   gdt_set_entry(5, 0, 0, 0b10011010, 0b00100000);
